@@ -11,6 +11,11 @@ import { badgeVariants } from "./ui/badge";
 import Image from "next/image";
 import Link from "next/link";
 import useQueryString from "@/hooks/useQueryString";
+import dynamic from "next/dynamic";
+
+const RadarChart = dynamic(() => import("@/components/radar-chart"), {
+  ssr: false,
+});
 
 type Pokemon = z.infer<typeof pokemonSchema>;
 
@@ -24,7 +29,6 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{data.name}</CardTitle>
         <CardDescription>
           {data.types.map((typeData) => {
             return (
@@ -47,9 +51,9 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div>
+        <div className="flex flex-wrap-reverse gap-16 justify-center">
           <div>
-            <div className="flex">
+            <div className="flex mb-4">
               {data.sprites.front_default && (
                 <Image
                   src={data.sprites.front_default}
@@ -85,10 +89,42 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
                 />
               )}
             </div>
-            <div>
-              <p>Height: {data.height}</p>
-              <p>Weight: {data.weight}</p>
+            <div className="flex flex-col gap-5">
+              <div>
+                <p className="text-lg font-medium leading-none">Name</p>
+                <p className="text-lg text-muted-foreground">{data.name}</p>
+              </div>
+              <div>
+                <p className="text-lg font-medium leading-none">Height</p>
+                <p className="text-lg text-muted-foreground">{data.height}</p>
+              </div>
+              <div>
+                <p className="text-lg font-medium leading-none">Weight</p>
+                <p className="text-lg text-muted-foreground">{data.weight}</p>
+              </div>
+              <div>
+                <p className="text-lg font-medium leading-none">Abilities</p>
+                <p className="text-lg text-muted-foreground">
+                  {data.abilities.reduce((all, elm) => {
+                    if (!all) return elm.ability.name;
+                    all = `${all}, ${elm.ability.name}`;
+                    return all;
+                  }, "")}
+                </p>
+              </div>
+              <div>
+                <p className="text-lg font-medium leading-none">
+                  Base experience
+                </p>
+                <p className="text-lg text-muted-foreground">
+                  {data.base_experience}
+                </p>
+              </div>
             </div>
+          </div>
+          <div className="flex-1 max-w-[30rem]">
+            <h3 className="text-xl">State</h3>
+            <RadarChart data={data.stats} />
           </div>
         </div>
       </CardContent>

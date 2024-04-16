@@ -1,7 +1,8 @@
-import Category from "@/components/category";
 import { TypeButton } from "@/components/type-button";
 import { typesResponseSchema } from "@/schemas/types";
+import dynamic from "next/dynamic";
 
+const Category = dynamic(() => import("@/components/category"), { ssr: false });
 const getData = async () => {
   const response = await fetch("https://pokeapi.co/api/v2/type/");
 

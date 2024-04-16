@@ -1,17 +1,22 @@
 import { z } from "zod";
 
-const abilitySchema                 = z.object({
-  ability: z.object({
+export const stateSchema = z.object({
+  base_stat: z.number(),
+  effort: z.number(),
+  stat: z.object({
     name: z.string(),
     url: z.string(),
   }),
-  is_hidden: z.boolean(),
-  slot: z.number(),
 });
 
 export const pokemonSchema = z.object({
   abilities: z.array(
     z.object({
+      ability: z.object({
+        name: z.string(),
+        url: z.string(),
+      }),
+      is_hidden: z.boolean(),
       slot: z.number(),
     })
   ),
@@ -71,16 +76,7 @@ export const pokemonSchema = z.object({
     front_shiny: z.string().url().nullable(),
     front_shiny_female: z.string().url().nullable(),
   }),
-  stats: z.array(
-    z.object({
-      base_stat: z.number(),
-      effort: z.number(),
-      stat: z.object({
-        name: z.string(),
-        url: z.string(),
-      }),
-    })
-  ),
+  stats: z.array(stateSchema),
   types: z.array(
     z.object({
       slot: z.number(),

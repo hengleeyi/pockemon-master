@@ -1,12 +1,20 @@
 import { useSearchParams } from "next/navigation";
-import React, { useCallback } from "react";
+import { useCallback } from "react";
 
 const useQueryString = () => {
   const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
-    (paramsToUpdate: Record<string, string>) => {
-      const params = new URLSearchParams(searchParams.toString());
+    ({
+      paramsToUpdate,
+      reset,
+    }: {
+      paramsToUpdate: Record<string, string>;
+      reset?: boolean;
+    }) => {
+      const params = reset
+        ? new URLSearchParams()
+        : new URLSearchParams(searchParams.toString());
 
       Object.entries(paramsToUpdate).forEach(([name, value]) => {
         params.set(name, value);

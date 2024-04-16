@@ -1,21 +1,17 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { Badge, badgeVariants } from "./ui/badge";
-import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
-import { Button } from "./ui/button";
-import { usePathname, useSearchParams } from "next/navigation";
+import { badgeVariants } from "./ui/badge";
+import { usePathname } from "next/navigation";
 import useQueryString from "@/hooks/useQueryString";
 import usePokemonsByType from "@/hooks/queries/usePokemonsByType";
 
-type TypeButton = {
+type TypeButtonProps = {
   type: string;
   url: string;
 };
 
-export const TypeButton = ({ type, url }: TypeButton) => {
+export const TypeButton = ({ type, url }: TypeButtonProps) => {
   const { searchParams, createQueryString } = useQueryString();
 
   const urlSegments = url.split("/");
@@ -28,7 +24,9 @@ export const TypeButton = ({ type, url }: TypeButton) => {
 
   return (
     <Link
-      href={pathname + "?" + createQueryString({ type, typeId })}
+      href={
+        pathname + "?" + createQueryString({ paramsToUpdate: { type, typeId } })
+      }
       className={badgeVariants({ variant: "default" })}
     >
       {type}

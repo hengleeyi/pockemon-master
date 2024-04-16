@@ -27,11 +27,11 @@ export default async function Home({
   const data = await getData();
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-4">Pokemon Master</h1>
-      <section>
+      <h1 className="text-3xl font-bold mb-12">Pokemon Master</h1>
+      <section className="mb-8">
         <h2 className="text-xl mb-4">Types</h2>
         {data && (
-          <div className="grid grid-cols-1 gap-2 md:grid-cols-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
             {data.results.map((typeData) => (
               <TypeButton
                 key={typeData.name}

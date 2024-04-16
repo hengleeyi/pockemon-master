@@ -17,10 +17,11 @@ export const TypeButton = ({ type, url }: TypeButtonProps) => {
   const urlSegments = url.split("/");
   const typeId = urlSegments[urlSegments.length - 2];
   const typeQueryStr = searchParams.get("type");
+  
 
   const pathname = usePathname();
 
-  usePokemonsByType(type === typeQueryStr, typeId);
+  usePokemonsByType(type === typeQueryStr, typeQueryStr);
 
   return (
     <Link

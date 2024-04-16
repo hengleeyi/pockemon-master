@@ -6,8 +6,9 @@ import PokemonCard from "./pokemon-card";
 
 const Category = () => {
   const searchParams = useSearchParams();
-  const typeId = searchParams.get("typeId");
+  const typeId = searchParams.get("type");
   const { data } = usePokemonsByType(false, typeId);
+  console.log("🚀 ~ Category ~ data:", data)
 
   return (
     <>

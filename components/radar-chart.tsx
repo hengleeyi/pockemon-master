@@ -29,6 +29,13 @@ const RadarChart = ({ data }: RadarChartProps) => {
     },
     xaxis: {
       categories,
+      labels: {
+        show: true,
+        style: {
+          colors: ["#a8a8a8"],
+          fontSize: "16px",
+        },
+      },
     },
   };
 

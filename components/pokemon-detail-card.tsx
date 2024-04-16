@@ -53,7 +53,7 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
       <CardContent>
         <div className="flex flex-wrap-reverse gap-16 justify-center">
           <div>
-            <div className="flex mb-4">
+            <div className="flex mb-4 gap-4">
               {data.sprites.front_default && (
                 <Image
                   src={data.sprites.front_default}
@@ -73,20 +73,25 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
               )}
 
               {data.sprites.front_shiny && (
-                <Image
-                  src={data.sprites.front_shiny}
-                  alt={data.name}
-                  width="100"
-                  height="100"
-                />
+                <div className="dark:bg-gray-900 bg-gray-100 rounded-lg">
+                  <Image
+                    src={data.sprites.front_shiny}
+                    alt={data.name}
+                    width="100"
+                    height="100"
+                  />
+                  {/* <small className="p-2">shiny</small> */}
+                </div>
               )}
               {data.sprites.back_shiny && (
-                <Image
-                  src={data.sprites.back_shiny}
-                  alt={data.name}
-                  width="100"
-                  height="100"
-                />
+                <div className="dark:bg-gray-900 bg-gray-100 rounded-lg">
+                  <Image
+                    src={data.sprites.back_shiny}
+                    alt={data.name}
+                    width="100"
+                    height="100"
+                  />
+                </div>
               )}
             </div>
             <div className="flex flex-col gap-5">
@@ -123,7 +128,10 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
             </div>
           </div>
           <div className="flex-1 max-w-[30rem]">
-            <h3 className="text-xl">State</h3>
+            <h3 className="text-xl">Status values</h3>
+            <p className="text-muted-foreground">
+              These are the default values in battles
+            </p>
             <RadarChart data={data.stats} />
           </div>
         </div>

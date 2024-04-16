@@ -7,7 +7,6 @@ const MainNav = () => {
     <nav className="flex justify-between sticky top-0 p-4 bg-white dark:bg-black">
       <div className="flex gap-2 items-center">
         <Link href="/">Home</Link>
-        <Link href="/categories">Categories</Link>
       </div>
       <div className="flex gap-2 items-center">
         <ToggleMode />

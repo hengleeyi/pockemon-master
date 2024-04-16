@@ -30,7 +30,7 @@ export default async function Home({
     <div className="p-4">
       <h1 className="text-3xl font-bold mb-12">Pokemon Master</h1>
       <section className="mb-8">
-        <h2 className="text-xl mb-4">Types</h2>
+        <h2 className="text-xl mb-4">Types{typeQueryStr && <span>: {typeQueryStr}</span>}</h2>
         {data && (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
             {data.results.map((typeData) => (

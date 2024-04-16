@@ -30,7 +30,6 @@ const Category = () => {
     );
   }, [data, searchName]);
 
-  console.log("🚀 ~ filterData ~ filterData:", filterData);
   if (!filterData) {
     return <div className="text-center text-2xl">No Pokemon found</div>;
   }

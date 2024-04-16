@@ -9,9 +9,7 @@ const usePokemon = (canFetch: boolean, pokemonId: string | null) => {
         `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
       );
       const data = await response.json();
-      console.log("🚀 ~ queryFn: ~ data:", data);
       const validation = pokemonSchema.safeParse(data);
-      console.log("🚀 ~ queryFn: ~ validation:", validation);
 
       if (validation.success) {
         return validation.data;

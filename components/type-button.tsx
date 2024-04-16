@@ -5,6 +5,8 @@ import { badgeVariants } from "./ui/badge";
 import { usePathname } from "next/navigation";
 import useQueryString from "@/hooks/useQueryString";
 import usePokemonsByType from "@/hooks/queries/usePokemonsByType";
+import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type TypeButtonProps = {
   type: string;
@@ -28,7 +30,7 @@ export const TypeButton = ({ type, url }: TypeButtonProps) => {
       href={
         pathname + "?" + createQueryString({ paramsToUpdate: { type, typeId } })
       }
-      className={badgeVariants({ variant: "default" })}
+      className={cn(badgeVariants({ variant: "default" }), type === typeQueryStr && "outline outline-2 outline-offset-2 outline-emerald-50")}
     >
       {type}
     </Link>

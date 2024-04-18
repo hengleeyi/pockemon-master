@@ -16,7 +16,7 @@ const PokemonCard = ({ name, url }: PokemonCardProps) => {
 
   const urlSegments = url.split("/");
   const pokemonId = urlSegments[urlSegments.length - 2];
-
+  
   return (
     <Card
       onClick={() => {
@@ -29,6 +29,7 @@ const PokemonCard = ({ name, url }: PokemonCardProps) => {
             })
         );
       }}
+      data-testid="pokemon-title-card"
     >
       <CardHeader>
         <CardTitle>{name}</CardTitle>

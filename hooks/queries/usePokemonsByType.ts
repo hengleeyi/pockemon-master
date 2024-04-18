@@ -7,7 +7,6 @@ const usePokemonsByType = (canFetch: boolean, type: string | null) => {
     queryFn: async () => {
       const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
       const data = await response.json();
-
       const validation = pokemonsByTypeSchema.safeParse(data);
 
       if (validation.success) {

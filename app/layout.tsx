@@ -19,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ReactQueryProvider>
-      <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ReactQueryProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
@@ -31,8 +31,8 @@ export default function RootLayout({
             <MainNav />
             <main className="w-10/12 m-auto">{children}</main>
           </ThemeProvider>
-        </body>
-      </html>
-    </ReactQueryProvider>
+        </ReactQueryProvider>
+      </body>
+    </html>
   );
 }

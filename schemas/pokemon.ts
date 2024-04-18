@@ -31,7 +31,7 @@ export const pokemonSchema = z.object({
   held_items: z.array(z.unknown()),
   id: z.number(),
   is_default: z.boolean(),
-  location_area_encounters: z.string().url(),
+  location_area_encounters: z.string(),
   moves: z.array(
     z.object({
       move: z
@@ -64,7 +64,7 @@ export const pokemonSchema = z.object({
   ),
   species: z.object({
     name: z.string(),
-    url: z.string().url(),
+    url: z.string(),
   }),
   sprites: z.object({
     back_default: z.string().url().nullable(),
@@ -75,6 +75,7 @@ export const pokemonSchema = z.object({
     front_female: z.string().url().nullable(),
     front_shiny: z.string().url().nullable(),
     front_shiny_female: z.string().url().nullable(),
+    other: z.unknown().nullable(),
   }),
   stats: z.array(stateSchema),
   types: z.array(

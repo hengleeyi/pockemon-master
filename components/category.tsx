@@ -1,18 +1,19 @@
 "use client";
-import usePokemonsByType from "@/hooks/queries/usePokemonsByType";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 import PokemonCard from "./pokemon-card";
-import { Input } from "./ui/input";
 import { useDebounce } from "use-debounce";
 import { Label } from "./ui/label";
+import { Badge } from "./ui/badge";
+import usePokemonsByType from "@/hooks/queries/usePokemonsByType";
+import { Input } from "./ui/input";
 
 const Category = () => {
   const [filterName, setFilterName] = useState("");
   const [searchName] = useDebounce(filterName, 500);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { data } = usePokemonsByType(false, type);
+  const { data } = usePokemonsByType(true, type);
 
   useEffect(() => {
     if (type) {
@@ -37,7 +38,14 @@ const Category = () => {
   return (
     <>
       <div className="grid w-full md:max-w-sm items-center gap-1.5">
-        <Label className="text-xl mb-4">Quick Search</Label>
+        <Label className="text-xl mb-4 flex">
+          Quick Search
+          {type && (
+            <Badge data-testid="active-type-badge" className="ml-4">
+              {type}
+            </Badge>
+          )}
+        </Label>
         <Input
           placeholder="Enter pokemon name here..."
           onChange={(e) => {

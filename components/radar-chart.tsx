@@ -47,7 +47,7 @@ const RadarChart = ({ data }: RadarChartProps) => {
   ];
 
   return (
-    <Chart options={chartOptions} series={series} type="radar" height="450" />
+    <Chart options={chartOptions} series={series} type="radar" height="450" data-testid="radar-chart-container"/>
   );
 };
 

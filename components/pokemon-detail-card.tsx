@@ -27,7 +27,7 @@ const PokemonDetailCard = ({ data }: PokemonDetailCardProps) => {
   const { createQueryString } = useQueryString();
 
   return (
-    <Card>
+    <Card data-testid="pokemon-detail-card">
       <CardHeader>
         <CardDescription>
           {data.types.map((typeData) => {

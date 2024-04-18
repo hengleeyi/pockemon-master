@@ -31,7 +31,7 @@ const Category = () => {
     );
   }, [data, searchName]);
 
-  if (!data) {
+  if (!data && !isLoading) {
     return null;
   }
 

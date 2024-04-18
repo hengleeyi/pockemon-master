@@ -44,6 +44,11 @@ function renderCategory() {
 describe("Category", () => {
   setupMock();
 
+  test("renders 'Loading' when usePokemonsByType call", () => {
+    renderCategory();
+    expect(screen.queryByText("Loading ...")).toBeInTheDocument();
+  });
+
   test("renders the filtered Pokemon cards when filterData is not empty", async () => {
     setTypeAndTriggerFetch();
     renderCategory();

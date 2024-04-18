@@ -31,7 +31,7 @@ const Category = () => {
     );
   }, [data, searchName]);
 
-  if (!filterData && !type) {
+  if (!data) {
     return null;
   }
 
@@ -39,7 +39,7 @@ const Category = () => {
     return <div className="text-center text-2xl">Loading ...</div>;
   }
 
-  if (!filterData && type) {
+  if (!filterData) {
     return <div className="text-center text-2xl">No Pokemon found</div>;
   }
 

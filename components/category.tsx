@@ -13,7 +13,7 @@ const Category = () => {
   const [searchName] = useDebounce(filterName, 500);
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
-  const { data } = usePokemonsByType(true, type);
+  const { data, isLoading } = usePokemonsByType(true, type);
 
   useEffect(() => {
     if (type) {
@@ -22,7 +22,7 @@ const Category = () => {
   }, [type]);
 
   const filterData = useMemo(() => {
-    if (!data) {
+    if (!data || data.pokemon.length === 0) {
       return undefined;
     }
 
@@ -31,7 +31,11 @@ const Category = () => {
     );
   }, [data, searchName]);
 
-  if (!filterData) {
+  if (isLoading) {
+    return <div className="text-center text-2xl">Loading ...</div>;
+  }
+
+  if (!filterData && type) {
     return <div className="text-center text-2xl">No Pokemon found</div>;
   }
 

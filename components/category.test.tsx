@@ -1,12 +1,13 @@
-import { describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Category from "./category";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const useSearchParamsMock = vi.hoisted(() => {
+  return () => new URLSearchParams("type=fire&typeId=10");
+});
+
 function setTypeAndTriggerFetch() {
-  const useSearchParamsMock = vi.hoisted(() => {
-    return () => new URLSearchParams("type=fire&typeId=10");
-  });
   vi.mock("next/navigation", async () => {
     const actual = await vi.importActual("next/navigation");
     return {
@@ -43,9 +44,9 @@ function renderCategory() {
 describe("Category", () => {
   setupMock();
 
-  test("renders 'No Pokemon found' when filterData is undefined", () => {
+  test("renders 'Loading' when usePokemonsByType call", () => {
     renderCategory();
-    expect(screen.queryByText("No Pokemon found")).toBeInTheDocument();
+    expect(screen.queryByText("Loading ...")).toBeInTheDocument();
   });
 
   test("renders the filtered Pokemon cards when filterData is not empty", async () => {
@@ -70,9 +71,12 @@ describe("Category", () => {
     fireEvent.change(inputElement, { target: { value: "fla" } });
     expect(inputElement).toHaveValue("fla");
 
-    await waitFor(() => {
-      expect(screen.getAllByTestId("pokemon-title-card")).toHaveLength(3);
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.getAllByTestId("pokemon-title-card")).toHaveLength(3);
+      },
+      { timeout: 1000 }
+    );
   });
 
   test("display 'No match Pokemon name' when input name doesn't match any pokemon", async () => {
@@ -85,8 +89,11 @@ describe("Category", () => {
     );
     fireEvent.change(inputElement, { target: { value: "blalaaaaaa" } });
 
-    await waitFor(() => {
-      expect(screen.queryByText("No match Pokemon name")).toBeInTheDocument();
-    }, { timeout: 1000 });
+    await waitFor(
+      () => {
+        expect(screen.queryByText("No match Pokemon name")).toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
   });
 });

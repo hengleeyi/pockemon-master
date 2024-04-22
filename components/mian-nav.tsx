@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import ToggleMode from "./toggle-mode";
-import { auth, signIn, signOut } from "@/lib/auth";
+import { auth, signIn, signOut } from "../lib/auth";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
@@ -46,7 +46,7 @@ const MainNav = async () => {
             }}
           >
             <Button type="submit" variant="outline">
-              <span>Sign in with Google</span>
+              Sign in with Google
             </Button>
           </form>
         )}

@@ -10,6 +10,7 @@ export default defineConfig({
     setupFiles: ["./vitest/setup.ts"],
     alias: {
       "@": resolve(__dirname),
+      '../lib/auth': resolve(__dirname, './lib/authMock'),
     },
     coverage: {
       provider: "v8",

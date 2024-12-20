@@ -28,7 +28,7 @@ export default async function Home({
   const data = await getData();
   return (
     <div className="p-4">
-      <h1 className="text-3xl font-bold mb-12">Pokemon Master</h1>
+      <h1 className="text-3xl font-bold mb-12">Pokemon Master22222</h1>
       <section className="mb-8">
         <h2 className="text-xl mb-4">Types{typeQueryStr && <span>: {typeQueryStr}</span>}</h2>
         {data && (

@@ -1,15 +1,14 @@
-import { useSelectedLayoutSegments } from "next/navigation";
+import MainNav from "@/components/mian-nav";
+import { ReactQueryProvider } from "@/components/react-query-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import MainNav from "@/components/mian-nav";
 import { ThemeProvider } from "../components/theme-provider";
-import { ReactQueryProvider } from "@/components/react-query-provider";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pokemon Master",
+  title: "Pokemon Master222222",
   description: "Pokemon Master is a platform for Pokemon fans.",
 };
 
